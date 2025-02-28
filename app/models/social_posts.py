@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from datetime import datetime
 from app.models.base import Base
 
-class SocialPost(Base):
+class SocialPosts(Base):
     __tablename__ = "social_posts"
 
     id = Column(Integer, primary_key=True, index=True)

@@ -1,6 +1,14 @@
-import requests
-from app.config.settings import SLACK_WEBHOOK_URL
+from fastapi import APIRouter
+from pydantic import BaseModel
+from app.services.notifications import send_slack_alert
 
-def send_slack_alert(message: str):
-    payload = {"text": message}
-    requests.post(SLACK_WEBHOOK_URL, json=payload)
+router = APIRouter()
+
+# Define a request model
+class AlertMessage(BaseModel):
+    message: str
+
+@router.post("/send_alert/")
+async def trigger_alert(alert: AlertMessage):
+    status = send_slack_alert(alert.message)
+    return {"message": "Alert sent!", "status": status}
