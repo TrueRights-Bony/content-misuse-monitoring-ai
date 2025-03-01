@@ -1,9 +1,19 @@
 import requests
 import os
 import logging
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+from app.models.base import SessionLocal
+from app.models.ad_data import AdData
 
 router = APIRouter()
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 # Load API keys from environment variables
 TIKTOK_ACCESS_TOKEN = os.getenv("TIKTOK_ACCESS_TOKEN")
@@ -30,3 +40,8 @@ def get_tiktok_ads(ad_account_id: str):
 async def fetch_tiktok_ads(ad_account_id: str):
     ads = get_tiktok_ads(ad_account_id)
     return {"ad_account_id": ad_account_id, "ads": ads}
+
+@router.get("/ads")
+async def list_tiktok_ads(db: Session = Depends(get_db)):
+    ads = db.query(AdData).filter(AdData.platform == "TikTok").all()
+    return {"ads": [{"id": a.id, "content": a.content} for a in ads]}

@@ -1,0 +1,7 @@
+// Purpose: Ignore files and directories in git
+./uploads/*
+./node_modules/*
+./public/*
+./.env
+./.env.local
+./.env.development

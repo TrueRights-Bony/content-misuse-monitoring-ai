@@ -1,0 +1,31 @@
+# Core Dependencies
+fastapi==0.95.2                 # Web framework for API development
+uvicorn==0.21.1                 # ASGI server to run FastAPI
+
+# Database Dependencies
+sqlalchemy==2.0.20              # ORM for database management
+psycopg2-binary==2.9.7          # PostgreSQL driver
+
+# Environment & Configuration
+python-dotenv==1.0.0            # Load environment variables from .env
+
+# File Handling & Cloud Storage
+python-multipart==0.0.6         # Handle file uploads in FastAPI
+
+# Logging & Monitoring
+loguru==0.7.0                   # Enhanced logging system
+
+# API Integrations
+requests==2.31.0                # Send HTTP requests (for Slack & social media APIs)
+
+# Background Tasks & Automation
+celery==5.3.1                   # Task queue for processing in the background
+redis==5.0.1                    # Redis cache for Celery
+
+# AI & NLP (For Future Phases - Contract Analysis)
+openai==1.1.0                   # Claude API (if using OpenAI embeddings)
+pinecone-client==2.2.1          # Pinecone Vector DB for semantic search
+
+# Testing Dependencies
+pytest==7.4.2                   # Python testing framework
+httpx==0.24.1                   # Async HTTP client (for FastAPI testing)

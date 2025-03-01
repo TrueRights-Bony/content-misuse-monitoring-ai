@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from datetime import datetime
-from models.base import Base
+from app.models.base import engine, Base
 
 class AdData(Base):
     __tablename__ = "ad_data"

@@ -1,7 +1,10 @@
 import requests
 import os
 import logging
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+from app.models.base import SessionLocal
+from app.models.ad_data import AdData
 
 router = APIRouter()
 
@@ -29,3 +32,15 @@ def get_facebook_posts(page_id: str):
 async def fetch_facebook_posts(page_id: str):
     posts = get_facebook_posts(page_id)
     return {"page_id": page_id, "posts": posts}
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+@router.get("/posts")
+async def list_facebook_posts(db: Session = Depends(get_db)):
+    posts = db.query(AdData).filter(AdData.platform == "Facebook").all()
+    return {"posts": [{"id": p.id, "content": p.content} for p in posts]}

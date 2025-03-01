@@ -1,8 +1,8 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from app.services.misuse_detection import analyze_content
 from sqlalchemy.orm import Session
-from services.misuse_detection import check_contract_violation
-from models.base import SessionLocal
+from app.services.misuse_detection import check_contract_violation
+from app.models.base import SessionLocal
 
 router = APIRouter()
 

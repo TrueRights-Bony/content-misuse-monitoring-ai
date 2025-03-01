@@ -37,3 +37,8 @@ async def upload_contract(file: UploadFile = File(...), db: Session = Depends(ge
     db.commit()
 
     return {"message": "Contract uploaded successfully", "filename": file.filename}
+
+@router.get("/list")
+async def list_contracts(db: Session = Depends(get_db)):
+    contracts = db.query(Contract).all()
+    return {"contracts": [{"id": c.id, "filename": c.filename, "status": c.status} for c in contracts]}
