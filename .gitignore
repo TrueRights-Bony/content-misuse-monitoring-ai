@@ -1,8 +1,22 @@
-// Purpose: Ignore files and directories in git
-./uploads/*
-./node_modules/*
-./public/*
-./.env
-./.env.local
-./.env.development
+# Ignore uploaded files directory
+uploads/
+
+# Ignore dependencies installed via npm/yarn
+node_modules/
+
+# Ignore build/output directory
+public/
+
+# Ignore environment variable files
+.env
+.env.local
+.env.development
+
+# Ignore Python bytecode and cache
+__pycache__/
+**/__pycache__/
+
+# Ignore all __init__.py files
+__init__.py
+**/__init__.py
 .env

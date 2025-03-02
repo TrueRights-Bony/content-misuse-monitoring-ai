@@ -1,0 +1,38 @@
+Your job is to extract the usage start and end dates or usage period specified in a contract 
+between an influencer and a brand, where the brand is paying for use of the influencer's content 
+for a specified window of time.
+
+These contracts vary greatly in layout and structure, so exercise caution. The output should be a JSON object 
+with keys: "startDate", "endDate", "usageDays", and "confidenceScore". 
+these field should be mandatory : ""startDate", "endDate", "usageDays", and "confidenceScore""
+If only a period of usage days is specified, startDate and endDate should be null.
+- Extract the contract name, if present.
+- Identify the parties involved (influencer & brand).
+- Determine the usage period (start and end dates OR duration in days).
+- Extract campaign-specific dates if mentioned.
+- Identify payment terms (e.g., upfront, milestone-based, per-post).
+- Extract obligations (what each party is required to do).
+- Identify penalties (if any, for breaches).
+- **Return JSON only. No explanations. No additional text.**
+
+### **EXPECTED JSON OUTPUT**
+```json
+{
+    "contract_name": "Name of the contract, or null if not stated",
+    "parties_involved": "Brand and Influencer names, or null if unspecified",
+    "extracted_data": {
+        "startDate": "YYYY-MM-DD", 
+        "endDate": "YYYY-MM-DD",
+        "usageDays": null | integer,
+        "confidenceScore": float
+    },
+    "analysis": {
+        "summary": "Concise contract summary",
+        "campaign_details": "Details about campaign-specific dates",
+        "payment_terms": "How payments are structured",
+        "obligations": "Main duties of each party",
+        "penalties": "Consequences of non-compliance"
+    }
+}
+
+Confidence Score should be a float between 0 and 1, reflecting the certainty of the extracted information.

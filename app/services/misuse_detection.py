@@ -1,14 +1,15 @@
 import os
 import logging
-from openai import OpenAI
 from sqlalchemy.orm import Session
 from app.models.ad_data import AdData
 from app.models.contract import Contract
+from dotenv import load_dotenv
+import anthropic
 
-# Load AI API key
+load_dotenv()
 CLAUDE_API_KEY = os.getenv("CLAUDE_API_KEY")
 
-client = OpenAI(api_key=CLAUDE_API_KEY)
+client = anthropic.Anthropic(api_key=CLAUDE_API_KEY)  # ✅ Use the correct client
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)

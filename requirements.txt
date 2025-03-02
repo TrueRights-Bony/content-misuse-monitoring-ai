@@ -28,4 +28,14 @@ pinecone-client==2.2.1          # Pinecone Vector DB for semantic search
 
 # Testing Dependencies
 pytest==7.4.2                   # Python testing framework
-httpx==0.24.1                   # Async HTTP client (for FastAPI testing)
+httpx==0.24.1                   # Ensures compatibility with anthropic
+
+# AI Tools
+openai
+anthropic==0.48.0                # Downgraded to ensure compatibility with httpx
+httpx==0.24.1                    # Explicitly setting version for anthropic compatibility
+
+# PDF & Image Processing
+pymupdf
+pytesseract
+pdf2image
